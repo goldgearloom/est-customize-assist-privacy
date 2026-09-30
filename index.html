@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プライバシーポリシー - EST カスタマイズアシスト</title>
+<style>
+  body { font-family: system-ui, "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif; line-height: 1.8; max-width: 760px; margin: 0 auto; padding: 24px 16px 48px; color: #1f2328; background: #fff; }
+  h1 { font-size: 22px; } h2 { font-size: 17px; margin-top: 28px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; } th, td { border: 1px solid #d8dee4; padding: 6px 8px; text-align: left; vertical-align: top; }
+  .note { color: #59636e; font-size: 14px; }
+  @media (prefers-color-scheme: dark) { body { background: #16191d; color: #e6edf3; } th, td { border-color: #3a4048; } .note { color: #9aa4ae; } }
+</style>
+</head>
+<body>
+<h1>プライバシーポリシー</h1>
+<p>Chrome 拡張機能「EST カスタマイズアシスト」（以下「本拡張機能」）の、情報の取り扱いについて説明します。</p>
+<p class="note">制定日：2026年9月30日　最終更新日：2026年9月30日</p>
+
+<h2>1. 開発者のサーバーについて</h2>
+<p>本拡張機能は、開発者が運営するサーバーを使いません。利用者の入力・kintone の情報・API キーを、開発者が受け取ることはありません。アクセス解析や広告のためのデータ収集も行いません。</p>
+
+<h2>2. 読み取る情報</h2>
+<ul>
+  <li>開いている kintone アプリの<strong>フィールドの定義</strong>（フィールドコード・フィールド名・種類・選択肢）。kintone の「フォームの設定を取得する」API で読み取ります。</li>
+  <li><strong>レコードのデータは読み取りません。</strong>ただし「テスト入力」機能では、レコード追加画面の入力欄の状態をページの中で読み、テスト用の値を入れます。この値はページの外に出しません。</li>
+</ul>
+
+<h2>3. 外部に送る情報</h2>
+<table>
+  <tr><th>送り先</th><th>送る情報</th><th>送るとき</th></tr>
+  <tr><td>Google（Gemini API）<br>利用者が設定画面で選び、送信を許可した AI</td>
+      <td>・利用者が選んだ「やりたいこと」と条件<br>・使う項目の<strong>仮の名前（F01 など）と種類</strong>。実際のフィールドコード・フィールド名・選択肢の値は送りません<br>・利用者が自由に書いた文章（フィールド名・選択肢・登録した伏せる語句は仮の名前に置き換え、メールアドレス・電話番号・kintone のドメインなどは「[MASKED]」に置き換えた後のもの）<br>・利用者の API キー（認証のため）</td>
+      <td>利用者が送信内容の確認画面で「この内容で送信」を押したときだけ</td></tr>
+  <tr><td>サイボウズ株式会社の kintone Documentation MCP（Gemini が呼び出す）</td>
+      <td>公式ドキュメントを探すための検索語（API やイベントの一般的な名前）</td>
+      <td>Gemini が回答を作る途中で</td></tr>
+  <tr><td>利用者の kintone 環境</td>
+      <td>作成した JavaScript ファイル</td>
+      <td>利用者が「アプリに適用」の確認画面で「適用する」を押したときだけ</td></tr>
+</table>
+<p>自由に書いた文章に、仮の名前に置き換えられない会社名・人名などを書いた場合は、そのまま送られます。送信内容の確認画面で、送る全文を確かめてから送信してください。</p>
+<p>Google に送った情報は、Google の利用規約・プライバシーポリシーに従って扱われます。本拡張機能は送信時に「保存しない」（store: false）を指定しています。Gemini API の無料枠では、入力内容がサービスの改善に使われる場合があります。</p>
+
+<h2>4. この端末に保存する情報</h2>
+<table>
+  <tr><th>情報</th><th>保存先</th></tr>
+  <tr><td>API キー、使う AI とモデルの設定、伏せる語句、デバッグ記録の設定</td><td>Chrome の拡張機能用ストレージ（この端末だけ。同期はしません）</td></tr>
+  <tr><td>作成中の入力内容</td><td>ブラウザーを閉じると消える一時的な領域</td></tr>
+  <tr><td>「アプリに適用」の元に戻すための情報（適用前のファイルの一覧）と、適用したファイルが使う項目（フィールドコード）</td><td>Chrome の拡張機能用ストレージ（この端末だけ）</td></tr>
+</table>
+<p>仮の名前と実際の名前の対応表は保存しません（サイドパネルを閉じると消えます）。拡張機能を削除すると、保存した情報もすべて消えます。</p>
+
+<h2>5. 利用者のブラウザーで動かすコード</h2>
+<p>「このブラウザで試す」機能を使うと、利用者が確認した生成コードを、対象の kintone アプリの画面でだけ、利用者のブラウザーで一時的に動かします。「試すのをやめる」・サイドパネルを閉じる・ブラウザーの再起動で止まります。</p>
+
+<h2>6. Chrome ウェブストアのユーザーデータに関するポリシーの遵守</h2>
+<p>本拡張機能による情報の使用は、限定的使用の要件を含む Chrome ウェブストアのユーザーデータに関するポリシーに準拠します。<br>
+<span class="note">The use of information received from this extension adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements.</span></p>
+<ul>
+  <li>情報は、kintone のカスタマイズを作る目的のためだけに使います。</li>
+  <li>情報を販売したり、広告に使ったりしません。</li>
+  <li>開発者が利用者の情報を読むことはありません。</li>
+</ul>
+
+<h2>7. お問い合わせ</h2>
+<p>goldgearloom@gmail.com</p>
+
+<p class="note">「kintone」はサイボウズ株式会社の登録商標です。本拡張機能はサイボウズ株式会社とは関係のない、個人が開発したものです。</p>
+</body>
+</html>
