@@ -6,7 +6,7 @@
 <title>プライバシーポリシー - EST カスタマイズアシスト</title>
 <style>
   body { font-family: system-ui, "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif; line-height: 1.8; max-width: 760px; margin: 0 auto; padding: 24px 16px 48px; color: #1f2328; background: #fff; }
-  h1 { font-size: 22px; } h2 { font-size: 17px; margin-top: 28px; }
+  h1 { font-size: 22px; } h2 { font-size: 17px; margin-top: 28px; } h3 { font-size: 15px; margin-top: 20px; }
   table { border-collapse: collapse; width: 100%; font-size: 14px; } th, td { border: 1px solid #d8dee4; padding: 6px 8px; text-align: left; vertical-align: top; }
   .note { color: #59636e; font-size: 14px; }
   @media (prefers-color-scheme: dark) { body { background: #16191d; color: #e6edf3; } th, td { border-color: #3a4048; } .note { color: #9aa4ae; } }
@@ -15,7 +15,7 @@
 <body>
 <h1>プライバシーポリシー</h1>
 <p>Chrome 拡張機能「EST カスタマイズアシスト」（以下「本拡張機能」）の、情報の取り扱いについて説明します。</p>
-<p class="note">制定日：2026年9月30日　最終更新日：2026年10月5日</p>
+<p class="note">制定日：2026年9月30日　最終更新日：2026年10月6日</p>
 
 <h2>1. 開発者のサーバーについて</h2>
 <p>本拡張機能は、開発者が運営するサーバーを使いません。利用者の入力・kintone の情報・API キーを、開発者が受け取ることはありません。アクセス解析や広告のためのデータ収集も行いません。</p>
@@ -42,13 +42,28 @@
       <td>作成した JavaScript ファイル</td>
       <td>利用者が「アプリに適用」の確認画面で「適用する」を押したときだけ</td></tr>
 </table>
-<p>自由に書いた文章に、仮の名前に置き換えられない会社名・人名などを書いた場合は、そのまま送られます。送信内容の確認画面で、送る全文を確かめてから送信してください。</p>
-<p>AI に送った情報は、選んだ AI の提供元の利用規約・プライバシーポリシーに従って扱われます。</p>
+<h3>AI に送る情報を少なくするしくみ</h3>
+<p>本拡張機能は、AI に送る情報をできるだけ少なくするように作っています。</p>
 <ul>
-  <li>Google（Gemini API）：送信時に「保存しない」（store: false）を指定しています。無料枠では、入力内容がサービスの改善に使われる場合があります。</li>
-  <li>Anthropic（Claude API）：「保存しない」を指定する項目はありません。公式ドキュメントの確認に使う MCP コネクターは、ゼロデータ保持の対象外です（設定で「この拡張機能が確認してAIに渡す」を選ぶと、MCP コネクターは使いません）。</li>
-  <li>OpenAI（API）：送信時に「保存しない」（store: false）を指定しています。OpenAI は不正利用の監視のため、最大30日間ログを保持する場合があります。</li>
+  <li><strong>レコードのデータは読み取らず、送りません。</strong></li>
+  <li>項目名・選択肢は、「F01」「V01」のような仮の名前に置き換えてから送ります。この置き換えは止められません。返ってきた答えは、この拡張機能の中で元の名前に戻します。</li>
+  <li>「エラーメッセージ」など、画面に出す文言を入れる欄の内容は AI に送りません（「M01」のような仮の名前だけを送り、コードに入れるときに元の文言に戻します）。</li>
+  <li>メールアドレス・電話番号・カード番号らしき数字・kintone のドメインなどは、初期設定で自動的に「[MASKED]」に置き換えます。</li>
+  <li>送る前に、AI に届く文章の全文を確認画面で見られます。気になる言葉は【選んだ文字を伏せる】で隠せます。会社名など、いつも隠したい言葉は設定画面の「伏せる語句」に登録できます。</li>
 </ul>
+
+<h3>ご注意：自分で書いた文章</h3>
+<p>「自由に依頼する」「kintone仕様Q&amp;A」「修正を頼む」に書いた文章は、項目名・選択肢・伏せる語句・上のメールアドレスなどを除いて、<strong>書いたとおりに AI に送られます</strong>。会社名・人名などの固有名詞を自動ですべて見つけることはできません。お客様の情報や社外秘の内容は書かないか、「伏せる語句」に登録してください。送信内容の確認画面で、送る全文を確かめてから送信してください。</p>
+
+<h3>ご注意：AI の提供元での扱い</h3>
+<p>AI に送った情報は、選んだ AI の提供元の利用規約・プライバシーポリシーに従って扱われます（次の内容は 2026年10月6日に各社の公開資料で確認したものです。変わることがあるため、ご利用前に各社の資料もご確認ください）。</p>
+<ul>
+  <li>Google（Gemini API）の<strong>無料枠</strong>：送った内容と返ってきた答えが、Google の製品や AI 技術の提供・改善・開発に使われ、品質を上げるために人が読むことがあります。Google も、無料枠には機密情報や個人情報を送らないよう案内しています（<a href="https://ai.google.dev/gemini-api/terms">Gemini API 追加利用規約</a>）。</li>
+  <li>Google（Gemini API）の<strong>有料</strong>（お支払いの設定をしたアカウント）：送った内容と答えは、Google の製品の改善には使われません（同じ規約）。なお本拡張機能は、無料・有料とも送信時に「保存しない」（store: false）を指定しています（無料枠で改善に使われることは、この指定では止められません）。</li>
+  <li>Anthropic（Claude API）：初期設定では、送った内容と答えはモデルの学習に使われません（<a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training">Anthropic の案内</a>）。「保存しない」を指定する項目はありません。公式ドキュメントの確認に使う MCP コネクターは、ゼロデータ保持の対象外です（設定の標準「この拡張機能が確認してAIに渡す」では、MCP コネクターは使いません）。</li>
+  <li>OpenAI（API）：初期設定では、送った内容と答えはモデルの学習・改善に使われません（<a href="https://developers.openai.com/api/docs/guides/your-data">OpenAI の案内</a>）。本拡張機能は送信時に「保存しない」（store: false）を指定しています。OpenAI は不正利用の監視のため、最大30日間ログを保持する場合があります。</li>
+</ul>
+<p><strong>業務で使う場合は、有料の API をおすすめします。</strong>会社で使う場合は、組織の管理者が Chrome のポリシーで、使える AI や機能を制限できます。</p>
 <p>公式ドキュメントの確認のために MCP サーバーに届く検索語は、そのサーバー（サイボウズ株式会社）の扱いに従います。</p>
 
 <h2>4. この端末に保存する情報</h2>
